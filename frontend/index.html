@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WeatherLens</title>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6-1.9A4.5 4.5 0 0 0 6.5 19h11z"></path>
+        <path d="M8 22l1.5-3"></path>
+        <path d="M12 22l1.5-3"></path>
+        <path d="M16 22l1.5-3"></path>
+    </svg>
+</div>
+
+            <div>
+                <h1>WeatherLens</h1>
+
+                <p>
+                    SPATIO-TEMPORAL FORECASTING & HIGH-RESOLUTION ANALYSIS
+
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="top-status">
+
+            <span class="status-dot"></span>
+
+            SYSTEM ACTIVE
+
+        </div>
+
+    </header>
+
+
+
+    <!-- MAIN LAYOUT -->
+    <main class="dashboard">
+
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar">
+
+
+            <!-- FORECAST CONTROLS -->
+
+            <div class="section-title">
+                FORECAST CONTROLS
+            </div>
+
+
+            <label>
+                Forecast Run
+            </label>
+
+            <select id="run-select">
+
+                <option>
+                    2026-09-27 12:00 UTC
+                </option>
+
+                <option>
+                    2026-09-27 06:00 UTC
+                </option>
+
+                <option>
+                    2026-09-27 00:00 UTC
+                </option>
+
+            </select>
+
+
+
+            <label>
+                Weather Variable
+            </label>
+
+            <select id="variable-select">
+
+                <option>
+                    Precipitation
+                </option>
+
+                <option>
+                    Temperature
+                </option>
+
+                <option>
+                    Wind Speed
+                </option>
+
+                <option>
+                    Pressure
+                </option>
+
+            </select>
+
+
+
+            <label>
+                Forecast Step
+            </label>
+
+            <select id="step-select">
+
+                <option>
+                    +24 hours
+                </option>
+
+                <option>
+                    +48 hours
+                </option>
+
+                <option>
+                    +72 hours
+                </option>
+
+            </select>
+
+
+
+            <div class="divider"></div>
+
+
+
+            <!-- DETECTION -->
+
+            <div class="section-title">
+                DETECTION
+            </div>
+
+
+            <div class="control-info">
+
+                <span>
+                    Event Detection
+                </span>
+
+                <strong>
+                    ACTIVE
+                </strong>
+
+            </div>
+
+
+            <div class="control-info">
+
+                <span>
+                    Tracking
+                </span>
+
+                <strong>
+                    ACTIVE
+                </strong>
+
+            </div>
+
+
+            <div class="control-info">
+
+                <span>
+                    Downscaling
+                </span>
+
+                <strong>
+                    READY
+                </strong>
+
+            </div>
+
+
+        </aside>
+
+
+
+        <!-- CENTER -->
+        <section class="center">
+
+
+            <!-- MAP HEADER -->
+
+            <div class="map-header">
+
+                <div>
+
+                    <h2>
+                        Weather Tracking Map
+                    </h2>
+
+                    <p>
+                        Detected anomaly region and predicted trajectory
+                    </p>
+
+                </div>
+
+
+                
+                <a href="#dx-anchor" class="map-badge teaser-badge">
+       IMPACT-BASED ADVISORY
+   </a>
+
+            </div>
+
+
+
+            <!-- MAP -->
+
+            <div id="map"></div>
+
+
+
+            <!-- MAP LEGEND -->
+
+            <div class="map-legend">
+
+                <div>
+
+                    <span class="legend-line"></span>
+
+                    Trajectory
+
+                </div>
+
+
+                <div>
+
+                    <span class="legend-box"></span>
+
+                    Extreme Region
+
+                </div>
+
+
+                <div>
+
+                    <span class="legend-point"></span>
+
+                    Forecast Position
+
+                </div>
+
+            </div>
+
+
+
+            <!-- DOWNSCALING -->
+
+            <div class="downscale">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            High-Resolution Downscaling
+                        </h2>
+
+                        
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="resolution">
+
+
+                    <div class="resolution-card">
+
+                        <span>
+                            INPUT FORECAST
+                        </span>
+
+                        <strong>
+                            12 km
+                        </strong>
+
+                        <small>
+                            Medium-resolution field
+                        </small>
+
+                    </div>
+
+
+
+                    <div class="resolution-arrow">
+                        →
+                    </div>
+
+
+
+                    <div class="resolution-card selected">
+
+                        <span>
+                            MODEL OUTPUT
+                        </span>
+
+                        <strong>
+                            5 km
+                        </strong>
+
+                        <small>
+                            High-resolution field
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="field-placeholder">
+
+                    <strong>
+                        5 km Downscaled Weather Field
+                    </strong>
+
+                    <span>
+                        Stage 2 model output will be displayed here
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- RIGHT PANEL -->
+
+        <aside class="right-panel">
+
+
+            <div class="section-title">
+                CURRENT EVENT
+            </div>
+
+
+
+            <div class="event-type">
+
+                <span>
+                    EVENT TYPE
+                </span>
+
+                <h2 id="event-name">
+                    Loading...
+                </h2>
+
+            </div>
+
+
+
+            <div class="severity-box">
+
+                <span>
+                    SEVERITY
+                </span>
+
+                <strong id="severity">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+
+            <div class="right-detail">
+
+                <span>
+                    Forecast Time
+                </span>
+
+                <strong id="timestamp">
+                    —
+                </strong>
+
+            </div>
+
+
+
+            <div class="right-detail">
+
+                <span>
+                    Peak Amplitude
+                </span>
+
+                <strong id="peak-amplitude">
+                    —
+                </strong>
+
+            </div>
+
+
+
+            <div class="right-detail">
+
+                <span>
+                    Trajectory Points
+                </span>
+
+                <strong id="trajectory-points">
+                    —
+                </strong>
+
+            </div>
+
+
+
+            <div class="divider"></div>
+
+
+
+            <div class="section-title">
+                DATA SOURCES
+            </div>
+
+
+
+            <div class="source">
+                IFS HRES (0.25°)
+            </div>
+
+
+            <div class="source">
+                ERA5 Baseline & Surface (0.25°)
+            </div>
+
+
+            <div class="source">
+                IBTrACS & IMERG Final
+            </div>
+
+
+        </aside>
+
+
+    </main>
+
+
+
+    <!-- LEAFLET -->
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+
+    <!-- OUR JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
