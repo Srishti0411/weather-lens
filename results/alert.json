@@ -1,0 +1,21 @@
+{
+ "event": "AMPHAN",
+ "forecast_init": "2020-05-15 12:00:00",
+ "valid_time": "2020-05-19 18:00:00",
+ "centroid": {
+  "lat": 18.5,
+  "lon": 86.25
+ },
+ "bbox": [
+  14.5,
+  22.25,
+  80.75,
+  90.75
+ ],
+ "severity": "severe",
+ "peak_amplitude_score": 98.48999786376953,
+ "downscaled_peak_wind_ms": 34.163185119628906,
+ "raw_hres_peak_wind_ms": 43.49956130981445,
+ "cells_moderate": 139,
+ "cells_severe": 64
+}
