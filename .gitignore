@@ -1,10 +1,16 @@
-# Large data files
+# Large / regenerable data
 *.nc
 *.grib
 *.grib2
 *.zarr/
+*.zip
+
+# Trained weights — blocked by default (unet_baseline.pt and
+# diffusion_downscaler.pt are >100MB, over GitHub's limit — link
+# those via README instead). gnn_tracker.pt is small, so it's kept.
 *.pt
 *.pth
+!weights/gnn_tracker.pt
 
 # Environments & OS
 __pycache__/
