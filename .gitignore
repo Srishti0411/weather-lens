@@ -1,0 +1,14 @@
+# Large data files
+*.nc
+*.grib
+*.grib2
+*.zarr/
+*.pt
+*.pth
+
+# Environments & OS
+__pycache__/
+.venv/
+venv/
+.DS_Store
+.ipynb_checkpoints/
